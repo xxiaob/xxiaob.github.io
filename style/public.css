@@ -1,0 +1,47 @@
+@charset "UTF-8";
+.title {
+  font-size: 12px;
+  line-height: 20px;
+}
+.title a {
+  color: #333;
+}
+.sub-title {
+  font-size: 12px;
+  line-height: 20px;
+  color: #b0b0b0;
+}
+.price {
+  font-size: 12px;
+  line-height: 20px;
+  color: #ff6700;
+}
+.flags {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+}
+.flags .flag {
+  width: 64px;
+  height: 20px;
+  border: 1px solid #ff6700;
+  color: #ff6700;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  margin: 0 auto;
+}
+
+.yello {
+  border-top: 1px solid #ffac13;
+}
+.green {
+  border-top: 1px solid #83c44e;
+}
+.red {
+  border-top: 1px solid #e53935;
+}
+.blue {
+  border-top: 1px solid #2196f3;
+}

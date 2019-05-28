@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/*=====================
+      INFO START
+========================*/
+#info {
+  height: 170px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #fafafa;
+}
+/*======i-logo start========*/
+#info .i-logo {
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 56px;
+  background: #ff6700 url("../images/head-nav/logo.png") no-repeat 0 0 / cover;
+}
+/*======i-logo end========*/
+/*======info-text start========*/
+#info .info-text {
+  height: 122px;
+  padding-left: 66px;
+  font-size: 12px;
+  color: #b0b0b0;
+  /* background-color: #fff; */
+}
+
+#info .info-text .info-title a {
+  padding-right: 6px;
+  /* border-right: 1px solid #757575; */
+  color: #757575;
+}
+#info .info-text a:hover {
+  color: #ff6700;
+}
+#info .info-text .info-contn {
+  line-height: 20px;
+}
+#info .info-text .security {
+  padding-top: 4px;
+}
+#info .info-text .security img {
+  height: 28px;
+}
+#info .slogan {
+  text-align: center;
+  font-size: 18px;
+  color: #c2c2c2;
+  margin-top: 20px;
+}
+/*======info-text end========*/
+/*=====================
+      INFO END
+========================*/

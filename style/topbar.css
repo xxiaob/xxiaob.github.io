@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+/*=====================
+      TOPBAR START
+========================*/
+#topbar {
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  background-color: #333;
+}
+#topbar a {
+  color: #b0b0b0;
+  padding: 0 8px;
+  border-right: 1px solid #35393f;
+}
+#topbar li:first-child a {
+  /*a在它父元素中第一个a*/
+  padding-left: 0;
+}
+#topbar a:hover {
+  color: #fff;
+}
+/*===== topbar start ======*/
+#topbar .download {
+  display: none;
+  top: 41px;
+  left: -34px;
+  width: 86px;
+  height: 120px;
+  background-color: #fff;
+  padding: 20px 19px 10px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 1px 2px 1px #d7d7d7;
+}
+#topbar .download:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-bottom-color: #fff;
+  border-top: none;
+}
+#topbar .download img {
+  width: 86px;
+  height: 86px;
+}
+#topbar .topbar-nav li:hover .download {
+  display: block;
+}
+/*===== topbar end ======*/
+
+/*===== use start ======*/
+#topbar .topbar-use .shopcar {
+  display: block;
+  width: 120px;
+  height: 100%;
+  line-height: 40px;
+  background-color: #424242;
+  text-align: center;
+}
+#topbar .topbar-use .shopcar:hover {
+  color: #ff6700;
+  background-color: #fff;
+}
+#topbar .topbar-use .shopcar .shopcar-list {
+  display: none;
+  top: 40px;
+  right: 0;
+  width: 316px;
+  height: 98px;
+  line-height: 98px;
+  background-color: #fff;
+  color: #424242;
+  box-shadow: 0 0 3px 0 #ddd;
+}
+#topbar .topbar-use .shopcar:hover .shopcar-list {
+  display: block;
+}
+/*===== use end ======*/
+
+/*=====================
+      TOPBAR END 
+========================*/
