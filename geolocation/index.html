@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      width: 500px;
+      height: 500px;
+      border: 2px solid red;
+    }
+  </style>
+
+</head>
+
+<body>
+  <button id="btn">请求地理信息</button>
+  <div id="box"></div>
+
+  <script>
+
+    btn.onclick = function () {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          console.log('获取信息成功');
+          box.innerHTML = position
+        },
+        function (err) {
+          console.log('获取信息失败');
+          console.log(err);
+        }
+      )
+    }
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
