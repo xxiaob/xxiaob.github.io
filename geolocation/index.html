@@ -31,8 +31,16 @@
     btn.onclick = function () {
       navigator.geolocation.getCurrentPosition(
         function (position) {
-          console.log('获取信息成功');
-          console.log(position.coords.longitude);
+          box.innerHTML = `
+            经度 : ${position.coords.longitude}<br/>
+            纬度 : ${position.coords.latitude}<br/>
+            准确度 : ${position.coords.accuracy}<br/>
+            海拔 : ${position.coords.altitude}<br/>
+            海拔的准确度 : ${position.coords.altitudeAccuracy}<br/>
+            行进的方向 : ${position.coords.heading}<br/>
+            地面速度 : ${position.coords.speed}<br/>
+            请求时间 : ${new Date(position.timestamp)}
+          `
         },
         function (err) {
           console.log('获取信息失败');
