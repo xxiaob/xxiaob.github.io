@@ -27,9 +27,9 @@
   <div id="box"></div>
 
   <script>
-
+    var timer = null;
     btn.onclick = function () {
-      navigator.geolocation.getCurrentPosition(
+      timer = navigator.geolocation.getCurrentPosition(
         function (position) {
           box.innerHTML = `
             经度 : ${position.coords.longitude}<br/>
