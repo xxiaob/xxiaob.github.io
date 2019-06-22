@@ -43,8 +43,12 @@
           `
         },
         function (err) {
-          console.log('获取信息失败');
-          console.log(err);
+          console.log(err.code);
+          // 请求失败清除
+          navigator.geolocation.clearWatch(timer);
+        }, {
+          frequency: 3,
+          timeout: 1000
         }
       )
     }
