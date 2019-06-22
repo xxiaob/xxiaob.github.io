@@ -32,7 +32,7 @@
       navigator.geolocation.getCurrentPosition(
         function (position) {
           console.log('获取信息成功');
-          box.innerHTML = position
+          box.innerHTML = position.toString();
         },
         function (err) {
           console.log('获取信息失败');
