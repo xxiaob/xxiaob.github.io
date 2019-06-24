@@ -28,7 +28,11 @@
     box.innerHTML += `
       clientWidth: ${document.documentElement.clientWidth}<br/>
       HTMLWidth: ${document.querySelector('html').getBoundingClientRect().width}<br/>
-      ScreenWidth: ${window.screen.width}`
+      ScreenWidth: ${window.screen.width}`;
+
+    box.onclick = function () {
+      this.innerHTML += '1'
+    }
   </script>
 
 
