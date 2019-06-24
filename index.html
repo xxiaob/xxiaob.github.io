@@ -8,8 +8,9 @@
   <title>Document</title>
 
   <style>
-
-
+    #box {
+      font-size: 40px;
+    }
   </style>
 
 </head>
@@ -24,7 +25,10 @@
   <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
   <script>
     var box = document.getElementById('box')
-    box.innerHTML = document.documentElement.clientWidth;
+    box.innerHTML += `
+      clientWidth: ${document.documentElement.clientWidth}<br/>
+      HTMLWidth: ${querySelecor('html').getBoundingClientRect().width}<br/>
+      ScreenWidth: ${window.screen.width}`
   </script>
 
 
