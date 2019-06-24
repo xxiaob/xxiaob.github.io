@@ -30,7 +30,7 @@
       HTMLWidth: ${document.querySelector('html').getBoundingClientRect().width}<br/>
       ScreenWidth: ${window.screen.width}<br/>`;
 
-    box.addEventListener('touchstart', function (e) {
+    box.addEventListener('touchmove', function (e) {
       console.log(e);
       this.innerHTML += `
       eouches:${e.touches.length}<br/>
