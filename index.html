@@ -31,10 +31,11 @@
       ScreenWidth: ${window.screen.width}<br/>`;
 
     box.addEventListener('touchstart', function (e) {
+      console.log(e);
       this.innerHTML += `
-      eouches:${e.touches}<br/>
-      targetTouches:${e.targetTouches}<br/>
-      changedTouches:${e.changedTouches}<br/>
+      eouches:${e.touches.length}<br/>
+      targetTouches:${e.targetTouches.length}<br/>
+      changedTouches:${e.changedTouches.length}<br/>
       手指个数: ${e.changedTouches.length}<br/>
       坐标:${e.changedTouches[0].pageX}`
     })
