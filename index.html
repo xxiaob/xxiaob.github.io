@@ -28,11 +28,16 @@
     box.innerHTML += `
       clientWidth: ${document.documentElement.clientWidth}<br/>
       HTMLWidth: ${document.querySelector('html').getBoundingClientRect().width}<br/>
-      ScreenWidth: ${window.screen.width}`;
+      ScreenWidth: ${window.screen.width}<br/>`;
 
-    box.onclick = function () {
-      this.innerHTML += '1'
-    }
+    box.addEventListener('touchstart', function (e) {
+      this.innerHTML += `
+      eouches:${e.touches}<br/>
+      targetTouches:${e.targetTouches}<br/>
+      changedTouches:${e.changedTouches}<br/>
+      手指个数: ${e.changedTouches.length}<br/>
+      坐标:${e.changedTouches[0].pageX}`
+    })
   </script>
 
 
