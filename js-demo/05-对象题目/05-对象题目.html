@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    h3 {
+      margin: 40px 0 20px;
+    }
+
+    p {
+      text-indent: 2rem;
+      margin: 20px 0;
+    }
+
+    img {
+      margin-left: 30px;
+    }
+
+    pre {
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <h2>this题目:</h2>
+    <h3>第一题:</h3>
+    <pre>
+      var myObject = {
+        foo : "bar",
+        fun : function(){
+          var self = this;
+          console.log("outer fun: this.foo = " + this.foo);
+          console.log("outer fun: self.foo = " + self.foo);
+          
+          (function(){
+            console.log("inner fun : this.foo = " + this.foo);
+            console.log("outer fun: self.foo = " + self.foo);
+          })();
+        }
+      }
+      myObject.fun();
+    </pre>
+
+    <h3>第二题:</h3>
+    <pre>
+      var hero = {
+        _name: "wuwei",
+        getName: function (){
+          return this._name;
+        }
+      }
+      var stoleName = hero.getName;
+
+      console.log(stoleName());
+      console.log(hero.getName());
+    </pre>
+
+
+
+    <h3>第三题:</h3>
+    <pre>
+      var length = 10;
+      function fn(){
+        console.log(this.length);
+      }
+
+      var obj = {
+        length: 5,
+        method: function(fn){
+          fn();
+          arguments[0]();
+        }
+      }
+      obj.method(fn,1);
+    </pre>
+
+
+    <h3>第四题:</h3>
+    <pre>
+    function a(){
+      y = function(){
+      x = 2;
+      };
+      return function(){
+        var x = 3;
+        y();
+        console.log(this.x);
+      }.bind(this)
+    }
+    
+    a();
+   </pre>
+
+    <h3>第五题:</h3>
+    <pre>
+      var n = 10;
+      var obj = {
+        n: 5,
+        c: a()
+      };
+      function a(){
+        var n = 7;
+        var c = function(){
+          var n = 3;
+          console.log(this.n);
+        }
+        return c;
+      }
+      obj.c(); // 5
+    </pre>
+
+    <h2>对象题目</h2>
+    <h3>第六题:</h3>
+    <pre>
+      var a = {},
+        b = {name:"b"},
+        c = {name:"c"};
+      a[b] = 123;
+      a[c] = 456;
+      
+      console.log(a[b]);
+    </pre>
+
+
+    <h3>第七题:</h3>
+    <pre>
+      var a = {n:1};
+      var b = a;
+      a.n = a = {m:1}
+      console.log(a);
+      console.log(b)
+    </pre>
+  </div>
+</body>
+
+</html>

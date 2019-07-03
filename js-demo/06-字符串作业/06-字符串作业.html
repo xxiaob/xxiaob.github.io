@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    h3 {
+      margin-top: 40px;
+    }
+
+    p {
+      text-indent: 2rem;
+      margin: 20px 0;
+    }
+
+    img {
+      margin-left: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <h2>字符串作业:</h2>
+    <h3>第一题:</h3>
+    <p>封装函数 检查字符串结尾:</p>
+    <p>例如:</p>
+    <p>输入confirmEnding("He has to give me a new name", "me")返回true</p>
+
+    <h3>第二题:</h3>
+    <p>封装函数 用来反转数字</p>
+    <p>例如:</p>
+    <p>输入reverseNumber(123456);返回654321</p>
+
+
+    <h3>第三题:</h3>
+    <p>例如:</p>
+    <p>输入isPalindrome('hello');返回false</p>
+    <p>输入isPalindrome('madam');返回true</p>
+
+    <h3>第四题:</h3>
+    <p>写一个函数对传入的字符串输出所有子字符串组合</p>
+    <p>例如:</p>
+    <p>输入substrings('dog'); 返回['d', 'do', 'dog', 'o', 'og', 'g']</p>
+
+    <h3>第五题:</h3>
+    <p>写一个函数对传入的字符串重新按字母排序</p>
+    <p>例如:</p>
+    <p>输入reorderStr('webmaster');返回 abeemrstw</p>
+
+
+    <h3>第六题:</h3>
+    <p>写一个函数对传入的字符串中每个单词的首字母大写</p>
+    <p>例如:</p>
+    <p>输入myCap('the quick brown fox'); 返回654321 The Quick Brown Fox</p>
+
+
+
+    <h3>第七题:</h3>
+    <p>写一个函数找出传入的字符串中最长的单词</p>
+    <p>例如:</p>
+    <p>输入findLongest('Web Development Tutorial'); 返回 Development</p>
+
+    <h3>第八题:</h3>
+    <p>封装函数 实现toUpperCase方法</p>
+    <p>例如:</p>
+    <p>输入myUpperCase("hello"); 返回HEllo</p>
+
+    <h3>第九题:</h3>
+    <p>封装函数 实现数组sort的方法（参考冒泡排序）</p>
+    <p>例如:</p>
+    <p>输入mySort([2,33,41,10,5]); 返回 [2,5,10,33,41]</p>
+
+    <h3>第十题:</h3>
+    <p>封装函数 重复输出字符串。</p>
+    <p>例如:</p>
+    <p>输入repeat("abc", -2); 返回abc</p>
+    <p>输入repeat("abc", 3); 返回abcabcabc</p>
+    <p>输入repeat("abc", 2); 返回abcabc</p>
+
+
+    <h3>第十一题:</h3>
+    <p>封装函数 删除数组中的假值</p>
+    <p>例如:</p>
+    <p>输入bouncer([7, "ate", "", false, 9]); 返回[7,"ate",9]</p>
+
+    <h3>第十二题:</h3>
+    <p>比较字符串，如果第一个字符串中包含了第二个字符串的所有字母，则返回`true`，否则返回`false`</p>
+    <p>例如:</p>
+    <p>输入compare(["hello", "heo"]); 返回true</p>
+
+    <h3>第十三题:</h3>
+    <p>封装函数 用指定字符串替换字符串的</p>
+    <p>例如:</p>
+    <p>输入replaceStr('l am wuwei','wuwei','sixsixsixx')</p>
+
+    <h3>第十四题:</h3>
+    <p>封装函数 实现push方法</p>
+
+    <h3>第十五题:</h3>
+    <p>封装函数 获取字符串中的数字，并按照数组输出</p>
+    <p>例如:</p>
+    <p>输入returnArr('shdkfh1234cxj5665sdkj2121') 返回[1234,5665,2121]</p>
+
+
+    <h3>第十六题:</h3>
+    <p>封装函数 查找出第一个只出现一次的字符</p>
+    <p>例如:</p>
+    <p>例如unquie("wuwei"); 返回"u"</p>
+
+    <h3>第十七题:</h3>
+    <p>封装函数 实现字符串去重</p>
+    <p>例如:</p>
+    <p>输入deweightStr("wuweiwu"); 返回'wuei'</p>
+
+    <h3>第十八题:</h3>
+    <p>封装函数 实现数组去重</p>
+    <p>例如:</p>
+    <p>输入deweightArr([1,4,6,3,4,6,2]); 返回[1,4,6,3,2]</p>
+
+    <h3>第十九题:</h3>
+    <p>封装函数 输出指定字符串的长度：</p>
+    <p>提示:</p>
+    <p>1. 一个中文占2个字节，一个英文占一个字节</p>
+    ​<p>2.如果Unicode编码值小于等于255是英文，如果unicode编码值大于255是中文</p>
+
+
+    <h3>第二十题:</h3>
+    <p>封装函数 获取浏览器url中的数据 要求：函数返回值是一个对象</p>
+    <p>示例地址：</p>
+    <pre>
+      https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&tn=baidu&wd=wuwwei
+      &rsv_pq=becd1331000082fd&rsv_t=0f84&rqlang=cn&rsv_enter=1&rsv_sug3=14&rsv_sug1=12&rsv_sug7=100&rsv_sug2=0&rsp=0&inputT=9344&rsv_sug4=3518432
+    </pre>
+    <p>例如:</p>
+    <p>输入getUrl(url)['wd']; 返回"wuwei"</p>
+
+  </div>
+</body>
+
+</html>
