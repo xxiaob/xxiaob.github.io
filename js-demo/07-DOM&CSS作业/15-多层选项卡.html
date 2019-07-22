@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="Anthor" content="阿飞老师" />
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft yahei", serif;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    #box {
+      position: relative;
+      width: 428px;
+      height: 204px;
+      margin: 50px auto;
+    }
+
+    #box .left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 90px;
+    }
+
+    #box .left>li {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 1px;
+      cursor: pointer;
+    }
+
+    #box .right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 326px;
+      height: 204px;
+    }
+
+    #box .right>li {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #box .right>li.on {
+      display: block;
+    }
+
+    #box .right .img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #box .right .img>li {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #box .right .img>li.on {
+      display: block;
+    }
+
+    #box .right .img>li img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #box .right .tab {
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 25px;
+      line-height: 25px;
+    }
+
+    #box .right .tab>li {
+      float: left;
+      width: 25px;
+      height: 25px;
+      margin: 0 5px;
+      font-size: 12px;
+      color: #fff;
+      background: #000;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #box .right .tab>li.on,
+    #box .left>li.on {
+      background: #f60;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <ul class="left">
+      <li class="on">豪车</li>
+      <li>美味</li>
+      <li>美女风景</li>
+    </ul>
+
+    <ul class="right">
+      <li class="list on">
+        <ul class="img img1">
+          <li class="on"><img src="img2/1.jpg" /></li>
+          <li><img src="img2/2.jpg" /></li>
+          <li><img src="img2/3.jpg" /></li>
+          <li><img src="img2/4.jpg" /></li>
+        </ul>
+        <ul class="tab tab1">
+          <li class="on">1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+      </li>
+      <li class="list">
+        <ul class="img img2">
+          <li class="on"><img src="img2/m1.jpg" /></li>
+          <li><img src="img2/m2.jpg" /></li>
+          <li><img src="img2/m3.jpg" /></li>
+          <li><img src="img2/m4.jpg" /></li>
+          <li><img src="img2/m5.jpg" /></li>
+        </ul>
+        <ul class="tab tab2">
+          <li class="on">1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+      </li>
+      <li class="list">
+        <ul class="img img3">
+          <li class="on"><img src="img2/s1.jpg" /></li>
+          <li><img src="img2/s2.jpg" /></li>
+          <li><img src="img2/s3.jpg" /></li>
+          <li><img src="img2/s4.jpg" /></li>
+          <li><img src="img2/s5.jpg" /></li>
+        </ul>
+        <ul class="tab tab3">
+          <li class="on">1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+      </li>
+    </ul>
+
+
+  </div>
+  <script>
+    var oBox = document.getElementById("box");
+
+    //处理右侧内部的选项卡
+    var aImg = oBox.getElementsByClassName("img"),
+      aTab = oBox.getElementsByClassName("tab"),
+      length1 = aImg.length,
+      allImgLi = [],
+      allTabLi = [];
+
+    for (i = 0; i < length1; i++) {
+      allImgLi[i] = aImg[i].getElementsByTagName("li");
+      allTabLi[i] = aTab[i].getElementsByTagName("li");
+      allTabLi[i].showJ = 0; //用来表示当前显示的是第几个
+      for (var j = 0, ll = allTabLi[i].length; j < ll; j++) {
+        allTabLi[i][j].indexI = i; //存储时间函数里面需要用到的i
+        allTabLi[i][j].indexJ = j; //存储时间函数里面需要用到的j
+        allTabLi[i][j].onmouseenter = function () {
+          var i = this.indexI,
+            j = allTabLi[i].showJ;
+          if (j !== this.indexJ) {
+            allImgLi[i][j].classList.remove("on");
+            allTabLi[i][j].classList.remove("on");
+
+            allTabLi[i].showJ = j = this.indexJ;
+
+            allImgLi[i][j].classList.add("on");
+            allTabLi[i][j].classList.add("on");
+          }
+        };
+      }
+    }
+
+    //处理left和right的选项卡
+    var aLeftLi = oBox.getElementsByClassName("left")[0].getElementsByTagName("li"),
+      aRightLi = oBox.getElementsByClassName("right")[0].getElementsByClassName("list"),
+      index1 = 0; //用来表示第一层处于哪一个
+
+    for (var i = 0, length = aLeftLi.length; i < length; i++) {
+      aLeftLi[i].index = i;
+      aLeftLi[i].onmouseenter = function () {
+        if (index1 !== this.index) {
+          //先将上一次的remove
+          aRightLi[index1].classList.remove("on");
+          aLeftLi[index1].classList.remove("on");
+
+          //然后改变index1为当前序号
+          index1 = this.index;
+
+          console.log(allTabLi[index1].showJ);
+          allImgLi[index1][allTabLi[index1].showJ].classList.remove("on");
+          allTabLi[index1][allTabLi[index1].showJ].classList.remove("on");
+
+          //将右侧显示的序号置为0
+          allTabLi[index1].showJ = 0;
+
+          //再将当前的add
+          aRightLi[index1].classList.add("on");
+          aLeftLi[index1].classList.add("on");
+
+          allImgLi[index1][0].classList.add("on");
+          allTabLi[index1][0].classList.add("on");
+        }
+      };
+    }
+  </script>
+</body>
+
+</html>

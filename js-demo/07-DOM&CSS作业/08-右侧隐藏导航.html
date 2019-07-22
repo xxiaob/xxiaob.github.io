@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>左侧边隐藏导航</title>
+  <meta name="Keywords" content="关键词,关键词">
+  <meta name="description" content="">
+  <!--css/js-->
+  <style type="text/css">
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #Logo {
+      width: 50px;
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+
+    #Menu {
+      position: absolute;
+      height: 100%;
+      left: -50px;
+      top: 0px;
+      background: #666;
+    }
+
+    #Menu ul {
+      height: 500px;
+      margin-top: 150px;
+      width: 50px;
+    }
+
+    #Menu ul li {
+      height: 36px;
+      width: 50px;
+      margin: 20px 0px;
+      padding: 7px 0px;
+      text-align: center;
+      position: relative;
+    }
+
+    #Logo p.but {
+      background: url("images/icon.png") 0px -60px;
+      width: 50px;
+      height: 50px;
+      bottom: 50px;
+      position: absolute;
+    }
+
+    #Menu ul li.bg {
+      background: #ffffcc;
+    }
+
+    #Menu ul li .con {
+      width: 200px;
+      height: 180px;
+      border: 1px solid #666;
+      position: absolute;
+      left: 50px;
+      top: -1px;
+      border-left: 0px;
+      display: none;
+      background: #ffffcc;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="Logo">
+    <div id="Menu">
+      <ul>
+        <li>
+          <img src="images/bq1.png" />
+          <div class="con"></div>
+        </li>
+        <li>
+          <img src="images/bq2.png" />
+          <div class="con"></div>
+        </li>
+        <li>
+          <img src="images/bq3.png" />
+          <div class="con"></div>
+        </li>
+        <li>
+          <img src="images/bq4.png" />
+          <div class="con"></div>
+        </li>
+        <li>
+          <img src="images/bq5.png" />
+          <div class="con"></div>
+        </li>
+      </ul>
+
+    </div>
+    <p class="but"></p>
+  </div>
+
+  <script type="text/javascript">
+    var oMenu = document.getElementById("Menu");
+    var oLogo = document.getElementById("Logo");
+    var oLi = oMenu.getElementsByTagName("li");
+    var oBut = oLogo.getElementsByTagName("p")[0];
+    var oDiv = oMenu.getElementsByTagName("div");
+
+    var len = oLi.length;
+    var tag = true; //如果没有条件，添加条件
+
+    //点击按扭操作事件
+    oBut.onclick = function () {
+      if (tag) {
+        this.style.backgroundPosition = "0px 0px";
+        oMenu.style.left = "0px";
+        tag = false;
+      } else {
+        this.style.backgroundPosition = "0px -60px";
+        oMenu.style.left = "-50px";
+        tag = true;
+      }
+    }
+
+    //鼠标滑动事件，显示和隐藏div内容
+    for (var i = 0; i < len; i++) {
+      oLi[i].index = i;
+      oLi[i].onmouseover = function () {
+        oDiv[this.index].style.display = "block";
+        this.className = "bg";
+      }
+
+      oLi[i].onmouseout = function () {
+        oDiv[this.index].style.display = "none";
+        this.className = "";
+      }
+    }
+  </script>
+</body>
+
+</html>

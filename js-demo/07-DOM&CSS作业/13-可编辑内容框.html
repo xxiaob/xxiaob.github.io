@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="Fly">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Microsoft yahei, serif;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    #box ul li {
+      height: 50px;
+      padding-left: 50px;
+      line-height: 50px;
+      font-size: 12px;
+      border-bottom: 1px solid red;
+    }
+
+    #box ul li span {
+      float: left;
+    }
+
+    #box ul li input {
+      display: none;
+      float: left;
+      margin-top: 14px;
+      color: #999;
+    }
+
+    #box ul li p {
+      float: left;
+      width: 50px;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      margin-top: 12px;
+      margin-left: 10px;
+      background: #000;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <ul>
+      <li>
+        <span>点击修改</span>
+        <input type="text" value="点击修改">
+        <p>修改</p>
+      </li>
+      <li>
+        <span>点击修改</span>
+        <input type="text" value="点击修改">
+        <p>修改</p>
+      </li>
+      <li>
+        <span>点击修改</span>
+        <input type="text" value="点击修改">
+        <p>修改</p>
+      </li>
+      <li>
+        <span>点击修改</span>
+        <input type="text" value="点击修改">
+        <p>修改</p>
+      </li>
+    </ul>
+  </div>
+  <script>
+    var oBox = document.getElementById("box");
+    var aSpan = oBox.querySelectorAll("ul li span");
+    var aInp = oBox.querySelectorAll("ul li input");
+    var aP = oBox.querySelectorAll("ul li p");
+    var length = aP.length;
+
+    for (var i = 0; i < length; i++) {
+      aP[i].index = i;
+      aP[i].onclick = function () {
+        var x = this.index;
+        if (this.innerHTML === "修改") {
+          aInp[x].value = aSpan[x].innerHTML;
+          aSpan[x].style.display = "none";
+          aInp[x].style.display = 'block';
+          this.innerHTML = "确认";
+        } else {
+          aSpan[x].innerHTML = aInp[x].value;
+          aSpan[x].style.display = "block";
+          aInp[x].style.display = 'none';
+          this.innerHTML = "修改";
+        }
+      };
+    }
+
+    /*
+     var bool = this.innerHTML === "修改";
+     bool?aInp[x].value = aSpan[x].innerHTML:aSpan[x].innerHTML = aInp[x].value;
+     aSpan[x].style.display = bool?"none":"block";
+     aInp[x].style.display = bool?"block":"none";
+     this.innerHTML = bool?"确认":"修改";
+     */
+  </script>
+</body>
+
+</html>

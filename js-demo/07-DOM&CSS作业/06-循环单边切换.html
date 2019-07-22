@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="Fly">
+  <title>循环切换 单边切换</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Microsoft yahei, serif;
+    }
+
+    #banner {
+      width: 600px;
+      border: 1px solid #ccc;
+      margin: 50px auto;
+      position: relative;
+      height: 375px;
+    }
+
+    #banner ul li {
+      list-style: none;
+      position: absolute;
+    }
+
+    #banner ul li img {
+      display: block;
+      width: 100%;
+      display: none;
+    }
+
+    #banner p {
+      position: absolute;
+      width: 100%;
+      line-height: 25px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+
+    #banner p.top {
+      top: 0;
+    }
+
+    #banner p.bottom {
+      bottom: 0;
+    }
+
+    #banner a {
+      position: absolute;
+      text-decoration: none;
+      width: 40px;
+      color: #fff;
+      font-size: 25px;
+      top: 50%;
+      margin-top: -15px;
+      line-height: 30px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #banner a.prev {
+      left: 0;
+
+    }
+
+    #banner a.next {
+      right: 0;
+
+    }
+
+    .btnBar {
+      width: 600px;
+      margin: 50px auto;
+      position: relative;
+      text-align: center;
+    }
+
+    .btnBar button {
+      padding: 10px;
+      background-color: #ccc;
+    }
+
+    .btnBar button.active {
+      background-color: red;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="banner">
+
+    <ul>
+      <li>
+        <img src="images/1.jpg" alt="">
+      </li>
+      <li>
+        <img src="images/2.jpg" alt="">
+      </li>
+      <li>
+        <img src="images/3.jpg" alt="">
+      </li>
+      <li>
+        <img src="images/4.jpg" alt="">
+      </li>
+      <li>
+        <img src="images/5.jpg" alt="">
+      </li>
+    </ul>
+    <p class='top'>1/5</p>
+    <p class='bottom'>大战僵尸</p>
+    <a class='prev' href="javascript:void(0);">&lt;</a>
+    <a class='next' href="javascript:void(0);">&gt;</a>
+
+  </div>
+  <div class="btnBar">
+    <button class='active'>正常模式</button>
+    <button>循环模式</button>
+  </div>
+
+  <script>
+    var aBtn = document.getElementsByTagName('a');
+    var aImg = document.getElementsByTagName('img');
+    var aP = document.getElementsByTagName('p');
+    var aPattern = document.getElementsByTagName('button');
+    var arrText = ['植物', '大战', '植物大战', '植物大战僵尸', '植物大战僵尸中文版'];
+    var num = 0;
+    aImg[num].style.display = 'block';
+    var oldImg = aImg[num];
+    var onoff = true;
+
+    aPattern[0].onclick = function () {
+
+      onoff = true;
+      aPattern[1].className = '';
+      this.className = 'active';
+
+    }
+    aPattern[1].onclick = function () {
+      onoff = false;
+
+      aPattern[0].className = '';
+      this.className = 'active';
+
+    }
+
+    aBtn[0].onclick = function () {
+      num--;
+      if (num < 0) {
+        if (onoff) {
+          num = 0;
+        } else {
+          num = 4;
+        }
+
+      }
+      oldImg.style.display = 'none';
+      aImg[num].style.display = 'block';
+      oldImg = aImg[num];
+      aP[0].innerHTML = num + 1 + '/' + 5;
+      aP[1].innerHTML = arrText[num];
+
+    }
+    aBtn[1].onclick = function () {
+      num++;
+      if (num > 4) {
+        if (onoff) {
+          num = 4;
+        } else {
+          num = 0;
+        }
+
+      }
+      oldImg.style.display = 'none';
+      aImg[num].style.display = 'block';
+      oldImg = aImg[num];
+      aP[0].innerHTML = num + 1 + '/' + 5;
+      aP[1].innerHTML = arrText[num];
+
+    }
+  </script>
+</body>
+
+</html>

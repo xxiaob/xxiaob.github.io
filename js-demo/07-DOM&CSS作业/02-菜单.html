@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>点击菜单</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft yahei";
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #menu {
+      position: relative;
+      width: 180px;
+      height: 180px;
+    }
+
+    #menu .main {
+      position: absolute;
+      top: 45px;
+      left: 45px;
+      width: 90px;
+      height: 90px;
+      background-color: pink;
+      line-height: 90px;
+      text-align: center;
+      border-radius: 50%;
+      cursor: pointer;
+      transform: scale(1);
+      transition: .3s;
+    }
+
+    #menu .main.hide {
+      transform: scale(0);
+    }
+
+    #menu .list p {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-color: aquamarine;
+      border-radius: 50%;
+      line-height: 80px;
+      text-align: center;
+      color: #000;
+      cursor: pointer;
+      transform: scale(0);
+      transition: .5s;
+    }
+
+    #menu .list.show p {
+      transform: scale(1);
+    }
+
+    #menu .list p:nth-child(1) {
+      top: 50px;
+      left: 50px;
+    }
+
+    #menu .list.show p:nth-child(1) {
+      top: 0;
+      left: 0;
+    }
+
+    #menu .list p:nth-child(2) {
+      top: 50px;
+      right: 50px;
+    }
+
+    #menu .list.show p:nth-child(2) {
+      top: 0;
+      right: 0;
+    }
+
+    #menu .list p:nth-child(3) {
+      left: 50px;
+      bottom: 50px;
+    }
+
+    #menu .list.show p:nth-child(3) {
+      left: 0;
+      bottom: 0;
+    }
+
+    #menu .list p:nth-child(4) {
+      right: 50px;
+      bottom: 50px;
+    }
+
+    #menu .list.show p:nth-child(4) {
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="menu">
+    <div class="main">菜单</div>
+    <div class="list">
+      <p>首页</p>
+      <p>文章</p>
+      <p>登录</p>
+      <p>注册</p>
+    </div>
+  </div>
+
+  <script>
+    var oMain = document.querySelector("#menu .main");
+    var oList = document.querySelector("#menu .list");
+
+    oMain.onclick = function () {
+      this.classList.add("hide");
+      oList.classList.add("show");
+    };
+  </script>
+</body>
+
+</html>

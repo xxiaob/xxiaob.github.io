@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="">
+  <title>生产左尖括号图形</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      width: 250px;
+      height: 250px;
+      border: 1px dashed black;
+      margin: 50px auto;
+      position: relative;
+    }
+
+    #box div {
+      width: 50px;
+      height: 50px;
+      background: #abcdef;
+      position: absolute;
+      left: 0;
+      top: 0;
+      text-align: center;
+      font: bold 20px/50px 'Arial';
+    }
+
+    /*
+				div:nth-child(1){
+					left:0;
+					top:0;
+				}
+				div:nth-child(2){
+					left:50px;
+					top:50px;
+				}
+				div:nth-child(3){
+					left:100px;
+					top:100px;
+				}
+			*/
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script src="../fn.js"></script>
+  <script type="text/javascript">
+    var oBox = document.getElementById('box');
+    var aDiv = oBox.getElementsByTagName('div');
+    var n = 5;
+    var str = '';
+    var m = Math.floor(n / 2); // m=2
+    //alert( Math.floor(0.1) ); 向下取整 把小数变成小数
+    //alert( m );
+    for (var i = 0; i < n; i++) {
+      //str += '<div style="left:'+(n-1-i)*50+'px;top:'+(n-1-i)*50+'px">'+i+'</div>';
+      if (i <= m) {
+        str += '<div style="left:' + i * 50 + 'px;top:' + i * 50 + 'px">' + i + '</div>';
+      } else {
+        str += '<div style="left:' + (n - 1 - i) * 50 + 'px;top:' + i * 50 + 'px">' + i + '</div>';
+      }
+
+    }
+    oBox.innerHTML = str;
+
+    for (var i = 0; i < n; i++) {
+      aDiv[i].style.color = random16();
+      aDiv[i].style.background = random16();
+    }
+  </script>
+</body>
+
+</html>

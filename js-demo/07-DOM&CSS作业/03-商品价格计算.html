@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="Author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+      user-select: none
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #goods {
+      width: 600px;
+      margin: 100px auto;
+      border-collapse: collapse;
+    }
+
+    #goods th {
+      height: 30px;
+    }
+
+    #goods td {
+      text-align: center;
+      height: 100px;
+    }
+
+    #goods td span#sub,
+    #goods td span#add {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #666;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #goods td span#number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    #goods .img {
+      background: url("./img/timg.jpg") no-repeat center center/contain;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table id="goods" border="1">
+    <tr>
+      <th>图片</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>价格</th>
+    </tr>
+    <tr>
+      <td class="img"></td>
+      <td class="danjia">20</td>
+      <td class="num">
+        <span id="sub">-</span><span id="number">0</span><span id="add">+</span></td>
+      <td class="price" id="price">0</td>
+    </tr>
+  </table>
+
+  <script>
+    var oSub = document.getElementById("sub")
+    var oAdd = document.getElementById("add")
+    var oNum = document.getElementById("number")
+    var oPrice = document.getElementById("price")
+    var number = 0;
+
+    oAdd.onclick = function () {
+      number++;
+      oNum.innerHTML = number;
+      oPrice.innerHTML = number * 20;
+    }
+    oSub.onclick = function () {
+      number--;
+      if (number < 0) number = 0;
+      oNum.innerHTML = number;
+      oPrice.innerHTML = number * 20;
+    }
+  </script>
+</body>
+
+</html>

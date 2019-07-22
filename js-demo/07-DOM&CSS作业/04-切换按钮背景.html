@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="Author" content="">
+  <style>
+    body {
+      user-select: none
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    ul,
+    li,
+    dl,
+    dt,
+    ol {
+      list-style-type: none;
+    }
+
+    #button {
+      width: 100px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid #ffd9ae;
+    }
+
+    #button.pink {
+      background-color: pink;
+      color: #fff;
+    }
+
+    #button.green {
+      background-color: green;
+      color: #fff;
+    }
+
+    #button.ivory {
+      background-color: ivory;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="button" class="pink">
+    按钮
+  </div>
+  <script>
+    var oBtn = document.getElementById("button")
+    var cname = ["pink", "green", "ivory"];
+    var i = 0;
+
+    oBtn.onclick = function () {
+      this.className = cname[++i % 3];
+    }
+  </script>
+</body>
+
+</html>

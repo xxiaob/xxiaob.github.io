@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>两个独立盒子之间的操作</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #box1,
+    #box2 {
+      width: 200px;
+      height: 50px;
+      background: #999;
+      margin: 50px auto;
+      line-height: 50px;
+      font-weight: bolder;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box1"></div>
+
+  <div id="box2"></div>
+
+  <script>
+    var oBox1 = document.getElementById("box1"),
+      oBox2 = document.getElementById("box2");
+
+    oBox1.onmouseenter = function () {
+      oBox2.innerHTML = "移入了box1";
+    };
+    oBox1.onmouseleave = function () {
+      oBox2.innerHTML = "";
+    };
+
+    oBox2.onmouseenter = function () {
+      oBox1.innerHTML = "移入了box2";
+    };
+    oBox2.onmouseleave = function () {
+      oBox1.innerHTML = "";
+    };
+  </script>
+</body>
+
+</html>
