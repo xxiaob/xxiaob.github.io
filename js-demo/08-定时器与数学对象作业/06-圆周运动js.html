@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="潭州教育-阿飞老师">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap {
+      position: relative;
+      width: 498px;
+      height: 498px;
+      margin: 50px auto 0;
+      border: 1px solid #bbb;
+      border-radius: 50%;
+      line-height: 500px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bolder;
+    }
+
+    #wrap span {
+      position: absolute;
+      top: -5px;
+      left: 245px;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    #shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+    }
+
+    #shadow span {
+      width: 6px;
+      height: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    这是外面的大圆
+    <span></span>
+    <div id="shadow"></div>
+  </div>
+
+  <script>
+    (function () {
+
+
+      let startDeg = 90;
+      let r = 250;
+      let oS = document.querySelector("span");
+      let shadow = document.getElementById("shadow");
+      let randomColor = function () {
+        let [r, g, b] = [
+          Math.floor(Math.random() * 256),
+          Math.floor(Math.random() * 256),
+          Math.floor(Math.random() * 256)
+        ];
+        return `rgb(${r},${g},${b})`;
+      };
+
+      function m() {
+        startDeg--;
+        // r -= 0.1;
+        let rad = startDeg / 360 * 2 * Math.PI;
+
+        let x = Math.cos(rad) * r,
+          y = Math.sin(rad) * r,
+          left = x + 250 - 5,
+          top = 250 - y - 5;
+
+        oS.style.left = left + 'px';
+        oS.style.top = top + 'px';
+
+        shadow.innerHTML =
+          `<span style="background-color: ${randomColor()};left:${left+2}px;top:${top+2}px"></span>`;
+        requestAnimationFrame(m);
+      }
+      requestAnimationFrame(m);
+
+
+    })();
+  </script>
+</body>
+
+</html>

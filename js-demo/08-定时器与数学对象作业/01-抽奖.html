@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap {
+      position: relative;
+      width: 500px;
+      height: 400px;
+      margin: 50px auto;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+    }
+
+    #wrap .tip {
+      font-size: 14px;
+    }
+
+    #wrap .content {
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 300px;
+      margin-top: 20px;
+      font-size: 12px;
+      border-top: 1px dashed pink;
+    }
+
+    #content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div class="tip">
+      <p class="title">抽奖：2元抽一次</p>
+      <P>一等奖：10元</P> <!-- 5% -->
+      <p>二等奖：5元</p> <!-- 10% -->
+      <p>三等奖：2元</p> <!-- 30% -->
+    </div>
+    <div class="content">
+      <div id="content">
+
+      </div>
+    </div>
+
+    <button id="btn">抽奖一次</button>
+  </div>
+
+  <script>
+    (function () {
+
+      let oBtn = document.getElementById("btn"),
+        oContent = document.getElementById("content");
+
+      oBtn.onclick = function () {
+        oContent.innerHTML += `<p>抽奖成功，你获得了:${fn( Math.random() )}</p>`;
+      };
+
+      function fn(ran) {
+        let num;
+        if (ran < 0.05) {
+          num = "一等奖";
+        } else if (ran < 0.15) {
+          num = "二等奖";
+        } else if (ran < 0.45) {
+          num = "三等奖";
+        } else {
+          num = "谢谢参与";
+        }
+        return num;
+      }
+
+    })();
+  </script>
+</body>
+
+</html>

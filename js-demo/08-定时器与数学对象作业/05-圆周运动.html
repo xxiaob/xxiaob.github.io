@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 50px auto 0;
+      border: 1px solid #bbb;
+      border-radius: 50%;
+      line-height: 500px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bolder;
+    }
+
+    #wrap p {
+      position: absolute;
+      top: 251px;
+      left: 0;
+      width: 100%;
+      height: 0;
+      transform: rotate(90deg);
+      animation: rot 5s linear infinite;
+    }
+
+    #wrap span {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    @keyframes rot {
+      from {
+        transform: rotate(90deg)
+      }
+
+      to {
+        transform: rotate(450deg)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    这是外面的大圆
+    <p><span></span></p>
+  </div>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

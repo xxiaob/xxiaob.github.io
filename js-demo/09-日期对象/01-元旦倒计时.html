@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap {
+      margin: 50px;
+      font-size: 30px;
+    }
+
+    #wrap span {
+      color: #f00;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    距离元旦还有 0 天 0 小时 0 分 0 秒
+  </div>
+
+  <script>
+    (function () {
+      let oW = document.getElementById("wrap");
+
+      let x = new Date(new Date().getFullYear() + 1, 1, 1);
+
+      function fn() {
+        let d_ = x - new Date();
+
+        let DD = Math.floor(d_ / 1000 / 60 / 60 / 24);
+        let HH = Math.floor(d_ / 1000 / 60 / 60 % 24);
+        let MM = Math.floor(d_ / 1000 / 60 % 60);
+        let SS = Math.floor(d_ / 1000 % 60);
+
+        if (DD < 10) DD = "0" + DD;
+        if (HH < 10) HH = "0" + HH;
+        if (MM < 10) MM = "0" + MM;
+        if (SS < 10) SS = "0" + SS;
+
+        oW.innerHTML = `距离元旦还有 <span>${DD}</span> 天 <span>${HH}</span> 小时 <span>${MM}</span> 分 <span>${SS}</span> 秒`;
+      }
+      fn();
+
+      setInterval(fn, 1000);
+
+    })();
+  </script>
+</body>
+
+</html>

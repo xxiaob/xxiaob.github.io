@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap span {
+      display: inline-block;
+      width: 150px;
+      height: 30px;
+      margin: 5px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap"></div>
+
+  <script>
+    let oWrap = document.getElementById("wrap");
+    setInterval(() => {
+      let rgb = randomColor();
+      oWrap.innerHTML += `<span style='background-color:${rgb}'>${rgb}</span>`;
+    }, 500);
+
+    function randomColor() {
+      let [r, g, b] = [
+        Math.floor(Math.random() * 256),
+        Math.floor(Math.random() * 256),
+        Math.floor(Math.random() * 256)
+      ];
+      return `rgb(${r},${g},${b})`;
+    }
+  </script>
+</body>
+
+</html>
