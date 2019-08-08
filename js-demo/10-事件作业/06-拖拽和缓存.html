@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      user-select: none;
+      /* height: 20px; */
+    }
+
+    .content {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 320px;
+      height: 207px;
+      margin: auto;
+    }
+
+    .content ul {
+      list-style-type: none;
+    }
+
+    .content ul li {
+      position: absolute;
+    }
+
+    .content ul li img {
+      display: block;
+      width: 300px;
+      border: 10px solid #958a0d;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <ul>
+      <li><img src="images/1.jpg" alt=""></li>
+      <li><img src="images/2.jpg" alt=""></li>
+      <li><img src="images/3.jpg" alt=""></li>
+      <li><img src="images/4.jpg" alt=""></li>
+      <li><img src="images/5.jpg" alt=""></li>
+    </ul>
+  </div>
+  <script>
+    var oCon = document.getElementsByClassName('content')[0];
+    var aLi = oCon.getElementsByTagName('li');
+    var len = aLi.length;
+    var timer;
+
+    // console.log(len)
+
+    var winW, winH, leftMax, topMax, index = 0;
+    var w = oCon.clientWidth;
+    var h = oCon.clientHeight;
+
+    //计算最大值,最小值
+    function ltMax() {
+      winW = window.innerWidth;
+      winH = window.innerHeight;
+      leftMax = (winW - w) / 2;
+      topMax = (winH - h) / 2;
+      console.log(leftMax, topMax);
+    }
+    ltMax();
+    window.onresize = ltMax;
+
+    // 获取浏览器屏幕宽高
+    function getViewportOffset() {
+      if (window.innerWidth) {
+        return {
+          w: window.innerWidth,
+          h: window.innerHeight,
+        }
+      } else {
+        if (document.compatMode === 'CSS1Compat') {
+          return {
+            w: document.documentElement.clientWidth,
+            h: document.documentElement.clientWidth,
+          }
+        } else {
+          return {
+            w: document.body.clientWidth,
+            h: document.body.clientWidth,
+          }
+        }
+      }
+    }
+
+
+    document.addEventListener('mousedown', function (e) {
+      clearInterval(timer);
+      var e = e || window.event;
+      var target = e.target || e.srcElement;
+      var parent = target.parentNode;
+      cancelHandle(e);
+
+
+      if (parent.nodeName === 'LI') {
+        var startX = e.clientX;
+        var startY = e.clientY;
+        var startLeft = parent.offsetLeft;
+        var startTop = parent.offsetTop;
+        var nowX, nowY;
+        var _x, _y;
+
+
+        document.onmousemove = function (e) {
+          var e = e || window.event;
+          _x = e.clientX - nowX || 0;
+          _y = e.clientY - nowY || 0;
+
+          nowX = e.clientX;
+          nowY = e.clientY;
+          var nowLeft = startLeft + nowX - startX;
+          var nowTop = startTop + nowY - startY;
+
+          nowLeft = Math.min(leftMax, nowLeft);
+          nowLeft = Math.max(nowLeft, -leftMax);
+
+          nowTop = Math.min(topMax, nowTop);
+          nowTop = Math.max(nowTop, -topMax);
+
+          parent.style.left = nowLeft + 'px';
+          parent.style.top = nowTop + 'px';
+          parent.style.zIndex = ++index;
+        };
+
+        document.onmouseup = function () {
+          this.onmousemove = null;
+          this.onmouseup = null;
+          // 缓冲
+          timer = setInterval(function () {
+            console.log(1);
+
+            _x *= .9;
+            _y *= .9;
+
+            var nowLeft = parent.offsetLeft + _x;
+            var nowTop = parent.offsetTop + _y;
+
+            if (nowLeft > leftMax || nowLeft < -leftMax) {
+              _x = -_x;
+            }
+            if (nowTop > topMax || nowTop < -topMax) {
+              _y = -_y;
+            }
+
+            nowLeft = Math.min(leftMax, nowLeft);
+            nowLeft = Math.max(nowLeft, -leftMax);
+
+            nowTop = Math.min(topMax, nowTop);
+            nowTop = Math.max(nowTop, -topMax);
+
+            parent.style.left = nowLeft + 'px';
+            parent.style.top = nowTop + 'px';
+
+            if (Math.abs(_x) < .5 && Math.abs(_y) < .5) {
+              clearInterval(timer);
+            }
+
+          }, 20)
+
+        }
+      }
+    });
+
+
+    // 清除默认样式
+    function cancelHandle(e) {	//取消默认事件   兼容函数
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        e.returnValue = true;
+      }
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="潭州教育-阿飞老师">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap {
+      width: 640px;
+      height: 315px;
+      margin: 50px auto;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+
+    #wrap .top {
+      width: 600px;
+      height: 40px;
+      padding-top: 30px;
+      margin: 0 auto;
+    }
+
+    #wrap .top input {
+      margin: 0 5px;
+      outline: none;
+    }
+
+    #wrap .top input[type=text] {
+      width: 180px;
+      height: 36px;
+      border: 1px solid #bbb;
+      text-indent: 5px;
+
+    }
+
+    #wrap .top input[type=button] {
+      width: 50px;
+      height: 40px;
+    }
+
+    #wrap .bottom {
+      margin-top: 20px;
+    }
+
+    #wrap .bottom p {
+      margin: 5px 0;
+      font-size: 15px;
+      text-indent: 2em;
+      line-height: 25px;
+    }
+
+    #wrap .bottom p b {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div class="top">
+      <input type="text" placeholder="搜索内容">
+      <input type="button" value="搜索">
+      <input type="text" placeholder="替换内容">
+      <input type="button" value="替换">
+      <input type="button" value="重置">
+    </div>
+
+    <div class="bottom">
+      <p>张家界是湖南省辖地级市，原名大庸市，辖2个市辖区（永定区、武陵源区）、2个县（慈利县、桑植县）。位于湖南西北部，澧水中上游，属武陵山区腹地。[1]
+        张家界因旅游建市，是中国最重要的旅游城市之一，是湘鄂渝黔革命根据地的发源地和中心区域。</p>
+      <p>1982年9月，张家界国家森林公园成为中国第一个国家森林公园。</p>
+      <p>
+        1988年8月，张家界武陵源风景名胜区被列入国家重点风景名胜区；1992年，由张家界国家森林公园等三大景区构成的武陵源风景名胜区被联合国教科文组织列入《世界自然遗产名录》；2004年2月，被列入全球首批《世界地质公园》；2007年，被列入中国首批国家5A级旅游景区。[2]
+      </p>
+    </div>
+  </div>
+
+  <script>
+
+    (function () {
+
+      let aInput = document.querySelectorAll("#wrap .top input"),
+        oBot = document.querySelector("#wrap .bottom"),
+        bHTML = oBot.innerHTML
+        ;
+
+      //搜索被点击
+      aInput[1].onclick = function () {
+        let val = aInput[0].value; //获取第一个框的内容
+        if (!val) return; //假设没有输入内容，结束
+        let arr = bHTML.split(val); //以val为界限切割
+        let newHTML = arr.join("<b>" + val + "</b>");
+        oBot.innerHTML = newHTML;
+      };
+
+      //替换被点击
+      aInput[3].onclick = function () {
+        let val1 = aInput[0].value,
+          val2 = aInput[2].value;
+        if (!val1 || !val2) return;
+
+        let arr = bHTML.split(val1);
+        let newHTML = arr.join("<b>" + val2 + "</b>");
+        oBot.innerHTML = newHTML;
+
+        bHTML = arr.join(val2);
+      };
+
+      //重置被点击
+      aInput[4].onclick = function () {
+        aInput[0].value = aInput[2].value = "";
+        oBot.innerHTML = bHTML;
+      };
+
+
+    })();
+
+
+
+    /*
+       let a = bHTML.split("张家界");
+       let b = a.join("<b>张家界</b>");
+       console.log(b);
+       oBot.innerHTML = b;*/
+
+
+
+
+  </script>
+</body>
+
+</html>

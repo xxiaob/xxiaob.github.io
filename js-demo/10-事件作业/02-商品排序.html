@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="keywords" content="关键词">
+  <meta name="description" content="描述">
+  <meta name="author" content="">
+  <style>
+    body {
+      font-family: "Microsoft YaHei", serif;
+    }
+
+    body,
+    dl,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ol,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    #wrap {
+      width: 879px;
+      height: 550px;
+      margin: 50px auto 0;
+      padding: 40px;
+      border: 1px solid #bbb;
+      user-select: none;
+    }
+
+    #content {
+      overflow: hidden;
+      width: 100%;
+      height: 500px;
+    }
+
+    #content ul {
+      width: 900px;
+      height: 100%;
+    }
+
+    #content ul li {
+      position: relative;
+      float: left;
+      width: 210px;
+      height: 240px;
+      margin-right: 13px;
+      margin-bottom: 20px;
+    }
+
+    #content ul li img {
+      display: block;
+    }
+
+    #content ul li p {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+    }
+
+    #content ul li span {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background: url("images/price.png");
+      font-size: 14px;
+      line-height: 50px;
+      font-style: italic;
+      color: #fff;
+    }
+
+    #btn {
+      margin-top: 20px;
+    }
+
+    #btn span {
+      display: inline-block;
+      height: 30px;
+      padding: 6px 20px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 12px;
+      background-color: #f60;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+
+    <div id="content">
+      <ul>
+        <!-- <li>
+                        <img src="images/xh_img1.jpg" width="210" height="210" alt="">
+                        <p>深红色经典玫瑰</p>
+                        <span>￥<b>99</b></span>
+                    </li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>-->
+      </ul>
+    </div>
+
+    <div id="btn">
+      <span style="margin-left: 600px">随机排序</span>
+      <span>从低到高</span>
+      <span>从高到低</span>
+    </div>
+
+  </div>
+
+  <script>
+
+    (function (data) {
+      //初始化
+      function createDom(data) {
+        let oUl = document.querySelector("#content ul");
+        let html = "";
+        data.forEach(d => {
+          html += `<li>
+                        <img src="${d.src}" width="210" height="210" alt="">
+                        <p>${d.dec}</p>
+                        <span>￥<b>${d.price}</b></span>
+                    </li>`;
+        });
+        oUl.innerHTML = html;
+      }
+      createDom(data);
+
+      //btn的点击事件
+      (function () {
+        let aBtn = [...document.querySelectorAll("#btn span")];
+        let sortFn = [
+          () => Math.random() - 0.5,
+          (a, b) => a.price - b.price,
+          (a, b) => b.price - a.price
+        ];
+        aBtn.forEach((ele, index) => {
+          ele.onclick = function () {
+            data.sort(sortFn[index]);
+            createDom(data);
+          };
+        });
+      })();
+    })([
+      {
+        src: "./images/xh_img1.jpg",
+        dec: "深红色经典玫瑰",
+        price: 100
+      },
+      {
+        src: "./images/xh_img2.jpg",
+        dec: "甜美七分袖荷叶边条纹设",
+        price: 97
+      },
+      {
+        src: "./images/xh_img3.jpg",
+        dec: "甜美七分袖荷叶边条纹设",
+        price: 99.5
+      },
+      {
+        src: "./images/xh_img4.jpg",
+        dec: "甜美七分袖荷叶边条纹设",
+        price: 215
+      },
+      {
+        src: "./images/xh_img5.jpg",
+        dec: "经典红色我的最爱",
+        price: 130
+      },
+      {
+        src: "./images/xh_img6.jpg",
+        dec: "清淡优雅百年百合",
+        price: 300
+      },
+      {
+        src: "./images/xh_img7.jpg",
+        dec: "紫色冷艳系列",
+        price: 700
+      },
+      {
+        src: "./images/xh_img8.jpg",
+        dec: "粉色浪漫系列玫瑰",
+        price: 500
+      }
+    ]);
+
+
+    /*switch (index) {
+                        case 0:
+                            data.sort((a,b)=>{
+                                return Math.random()-0.5;
+                            });
+                            console.log(data);
+                            break;
+                        case 1:
+                            data.sort((a,b)=>{
+                                return a.price - b.price;
+                            });
+                            break;
+                        case 2:
+                            data.sort((a,b)=>{
+                                return b.price - a.price;
+                            });
+                            break;
+                    }*/
+
+  </script>
+</body>
+
+</html>
