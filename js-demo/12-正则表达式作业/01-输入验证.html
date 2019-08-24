@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="Anthor" content="" />
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft yahei", serif;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    #box {
+      position: relative;
+      width: 420px;
+      height: 540px;
+      background: #0cf;
+      margin: 50px auto 0;
+    }
+
+    #box h2 {
+      background: #09c;
+      height: 40px;
+      line-height: 40px;
+      color: #fff;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    #box ul li {
+      overflow: hidden;
+      position: relative;
+      height: 42px;
+      margin: 23px 0;
+      transition: height .3s;
+    }
+
+    #box ul li.wrong {
+      height: 62px;
+    }
+
+    #box ul li.right {
+      height: 42px;
+    }
+
+    #box ul li input {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 270px;
+      height: 40px;
+      text-indent: 15px;
+      border: 1px solid #ccc;
+      outline: none;
+      margin: 0 auto;
+    }
+
+    #box ul li input:focus {
+      border: 1px solid pink;
+    }
+
+    #box ul li.wrong input {
+      border-color: red;
+    }
+
+    #box ul li.right input {
+      border-color: #00ae00;
+    }
+
+    #box ul li p.tip {
+      overflow: hidden;
+      height: 20px;
+      line-height: 20px;
+      color: #fb0021;
+      margin-left: 75px;
+      font-size: 12px;
+    }
+
+    #box ul li p.pass {
+      display: none;
+      position: absolute;
+      right: 46px;
+      top: 10px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      background: #4bba68;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bolder;
+      border-radius: 50%;
+      box-shadow: 1px 1px 5px #000;
+    }
+
+    #box ul li.right p.pass {
+      display: block;
+    }
+
+    #tip {
+      position: absolute;
+      z-index: 0;
+      top: 40%;
+      left: 50%;
+      margin-left: -75px;
+      margin-top: -20px;
+      width: 150px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: #000000;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: bolder;
+      opacity: 0;
+      transition: opacity .3s, top .3s;
+    }
+
+    #tip.show {
+      z-index: 99;
+      opacity: 1;
+      top: 50%;
+    }
+
+    #sub {
+      display: block;
+      width: 270px;
+      height: 40px;
+      background: #09c;
+      border: 1px solid #ccc;
+      outline: none;
+      margin: 10px auto 0;
+      color: #fff;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <h2>注册</h2>
+    <ul>
+      <li>
+        <input type="text" name="user" class="first" placeholder="请输入您的用户名">
+        <p class="tip">错误：用户名格式不正确</p>
+        <p class="pass">√</p>
+      </li>
+      <li>
+        <input type="password" name="pwd" class="first" placeholder="请输入您的密码">
+        <p class="tip">错误：密码格式不正确</p>
+        <p class="pass">√</p>
+      </li>
+      <li>
+        <input type="password" class="second" placeholder="请再次输入您的密码">
+        <p class="tip">错误：两次密码输入不一致</p>
+        <p class="pass">√</p>
+      </li>
+      <li>
+        <input type="text" name="tel" class="first" placeholder="请输入您的手机号">
+        <p class="tip">错误：手机号格式不正确</p>
+        <p class="pass">√</p>
+      </li>
+      <li>
+        <input type="text" name="qq" class="first" placeholder="请输入您的QQ号">
+        <p class="tip">错误：QQ号格式不正确</p>
+        <p class="pass">√</p>
+      </li>
+      <li>
+        <input type="text" name="email" class="first" placeholder="请输入您的邮箱">
+        <p class="tip">错误：邮箱格式不正确</p>
+        <p class="pass">√</p>
+      </li>
+    </ul>
+    <div id="tip">请先填写密码！！</div>
+    <input id="sub" type="submit" value="提交">
+  </div>
+
+  <script>
+
+    (function () {
+      let reg = {
+        //qq:5~10，只能是数字，第一位不是0
+        qq: /^[1-9]\d{4,9}$/,
+        //用户名：6~18，数字字母_，必须要字母开头
+        user: /^[a-z]\w{5,17}$/i,
+        //密码：6~18，数字字母_所有符号
+        pwd: /^[\w\-\]\\<>,.?/+*=)([{}:;"'&^%$#@!`~|]{6,18}$/,
+        //手机号：
+        tel: /^1[3-9]\d{9}$/,
+        //邮箱：
+        email: /^[a-z1-9_]\w{0,17}@[0-9a-z]{2,}(\.[a-z]{2,4}){1,2}$/i,
+      };
+
+      let aInput = [...document.querySelectorAll("#box ul li input.first")],
+        oSecendPwd = document.querySelector("#box .second"),
+        oTip = document.getElementById("tip")
+        ;
+
+      //需要进行正则检测的input
+      aInput.forEach(ele => {
+        ele.addEventListener("blur", function () {
+          let val = this.value;
+          if (val === "") {
+            //空值判断
+            empty.call(this);
+            //密码输入框额外的判断
+            if (this.name === "pwd") {
+              oSecendPwd.value = "";
+              empty.call(oSecendPwd);
+            }
+            return;
+          }
+          if (reg[this.name].test(val)) {
+            //正确判断
+            right.call(this);
+            //密码输入框额外的判断
+            this.name === "pwd" && pwd.call(this);
+          } else {
+            //错误判断
+            wrong.call(this);
+            this.focus();
+          }
+        });
+      });
+      //再次输入框的focus事件
+      oSecendPwd.addEventListener("focus", function () {
+        if (!aInput[1].value) {
+          //提示框显示
+          oTip.classList.add("show");
+          setTimeout(() => {
+            oTip.classList.remove("show");
+          }, 2000);
+          //焦点交给密码输入框
+          aInput[1].focus();
+        }
+      });
+      //再次输入框的blur事件
+      oSecendPwd.addEventListener("blur", function () {
+        let val = this.value;
+        if (val === "") {
+          //空值处理
+          empty.call(this);
+          return;
+        }
+        if (val === aInput[1].value) {
+          //正确处理
+          right.call(this);
+        } else {
+          //错误处理
+          wrong.call(this);
+          aInput[1].focus();
+        }
+      });
+
+      //密码输入的检测
+      function pwd() {
+        let val = this.value;
+        let val2 = oSecendPwd.value;
+        if (val2 === val) {
+          right.call(oSecendPwd);
+        } else if (val2) {
+          wrong.call(oSecendPwd);
+          oSecendPwd.focus();
+        }
+      }
+
+      //空值需要处理的class
+      function empty() {
+        let parentLiClassList = this.parentNode.classList;
+        parentLiClassList.remove("wrong", "right");
+      }
+      //正确需要处理的class
+      function right() {
+        let parentLiClassList = this.parentNode.classList;
+        parentLiClassList.remove("wrong");
+        parentLiClassList.add("right");
+      }
+      //错误需要处理的class
+      function wrong() {
+        let parentLiClassList = this.parentNode.classList;
+        parentLiClassList.remove("right");
+        parentLiClassList.add("wrong");
+      }
+    })();
+
+
+
+    /*//给input加离开焦点的事件
+        aInput.forEach((ele,index)=>{
+            if( index === 2 ){
+                //如果说是再次密码输入框
+                //获取焦点时
+                ele.addEventListener("focus",function(){
+                    if( !aInput[1].value ){
+                        //提示框显示
+                        oTip.classList.add("show");
+                        setTimeout(()=>{
+                            oTip.classList.remove("show");
+                        },2000);
+                        //焦点交给密码输入框
+                        aInput[1].focus();
+                    }
+                });
+                //失去焦点
+                ele.addEventListener("blur",function(){
+                    let val = this.value;
+                    let parentLiClassList = this.parentNode.classList;
+                    if( val === "" ){
+                        //空值处理
+                        parentLiClassList.remove("wrong","right");
+                        return;
+                    }
+                    if( val === aInput[1].value ){
+                        //正确处理
+                        parentLiClassList.remove("wrong");
+                        parentLiClassList.add("right");
+                    }else{
+                        //错误处理
+                        parentLiClassList.remove("right");
+                        parentLiClassList.add("wrong");
+                        aInput[1].focus();
+                    }
+                });
+            }else{
+                ele.addEventListener("blur" , function(){
+                    let val = this.value;
+                    let parentLiClassList = this.parentNode.classList;
+                    if( val === "" ){
+                        //空值处理
+                        parentLiClassList.remove("wrong","right");
+                        return;
+                    }
+                    if( reg[this.name].test(val) ){
+                        //正确处理
+                        parentLiClassList.remove("wrong");
+                        parentLiClassList.add("right");
+                        //密码框额外的检测
+                        if( index === 1 ){
+                            if( val === aInput[2].value ){
+                                aInput[2]
+                            }
+                        }
+                    }else{
+                        //错误处理
+                        parentLiClassList.remove("right");
+                        parentLiClassList.add("wrong");
+                        this.focus();
+                    }
+                });
+            }
+        });*/
+
+  </script>
+
+</body>
+
+</html>
