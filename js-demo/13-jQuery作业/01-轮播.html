@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>芒果TV</title>
+  <style type="text/css">
+	*{margin:0px;padding:0px;}
+	#tv{
+		width:100%;height:503px;
+		position:relative;
+		}
+	.con{
+		width:100%;height:503px;background:#000;
+		overflow:hidden;/*超出con区域的内容隐藏掉*/
+		}
+	.con ul li{
+		width:100%;height:503px;list-style-type:none;/*去除无序列表的黑点*/
+		position:relative;/*相对定位*/
+		}
+	.play{
+		width:120px;height:120px;
+		position:absolute;/*绝对定位*/left:50%;top:50%;
+		margin-left:-60px;margin-top:-60px;
+		background:url("images/play.png");
+		opacity:0;
+		}
+	.menu{
+		width:700px;height:55px;
+		position:absolute;left:50%;bottom:25px;
+		margin-left:-350px;
+		}
+	.menu ul li{
+		list-style-type:none;border:2px solid #ffffff;
+		width:90px;height:51px;float:left;margin-right:5px;
+		cursor:pointer;/*让鼠标变成手型*/
+		}
+	.menu ul .bor{border:2px solid #f06000;}
+  </style>
+ </head>
+ <body>
+	<div id="tv">
+		<div class="con">
+			<ul>
+				<li style="background:url(images/1.jpg) center;">
+					<a href="http://www.hunantv.com/v/1/103887/f/1108529.html">
+						<div class="play"></div>
+					</a>
+				</li>
+				<li style="background:url(images/2.jpg) center;">
+					<div class="play"></div>
+				</li>
+				<li style="background:url(images/3.jpg) center;">
+					<div class="play"></div>
+				</li>
+				<li style="background:url(images/4.jpg) center;">
+					<div class="play"></div>
+				</li>
+				<li style="background:url(images/5.jpg) center;">
+					<div class="play"></div>
+				</li>
+				<li style="background:url(images/6.jpg) center;">
+					<div class="play"></div>
+				</li>
+				<li style="background:url(images/7.jpg) center;">
+					<div class="play"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="menu">
+			<ul>
+				<li class="bor"><img src="images/nav1.jpg" /></li>
+				<li><img src="images/nav2.jpg" /></li>
+				<li><img src="images/nav3.jpg" /></li>
+				<li><img src="images/nav4.jpg" /></li>
+				<li><img src="images/nav5.jpg" /></li>
+				<li><img src="images/nav6.jpg" /></li>
+				<li><img src="images/nav7.jpg" /></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		var i = 0; //存放menu菜单中的li下标
+		$("#tv").hover(function(){
+			$(".play").css("opacity","1");
+		},function(){
+			$(".play").css("opacity","0");
+		})
+		$(".menu ul li").hover(function(){
+			$(".play").css("opacity","0");
+			$(this).addClass("bor").siblings().removeClass("bor");
+			i = $(this).index();
+			$(".con ul li").eq(i).stop(true,true).fadeIn(300).siblings().stop(true,true).fadeOut(300);
+			clearInterval(time);
+		},function(){
+			$(".play").css("opacity","1");
+			time=setInterval("junmper()",3000);
+		})
+		function junmper(){
+			i++; //i=i+1;
+			if(i>6)
+			i=0;
+			$(".con ul li").eq(i).stop(true,true).fadeIn(300).siblings().stop(true,true).fadeOut(300);
+			$(".menu ul li").eq(i).addClass("bor").siblings().removeClass("bor");
+		}
+		var time=setInterval("junmper()",3000);
+	</script>
+	<!--如果是id命名用#加盒子名控制样式 如果是class命名用.加盒子名控制样式-->
+	<!--所有html页面中的标签都可以直接拿标签名到css中控制样式-->
+ </body>
+</html>
